@@ -1,39 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    {% load static %}  <!-- Load static files -->
-
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Work with Us - NordiQvant</title>
 
-    <!-- Link to Favicon -->
-    <link rel="icon" href="{% static 'images/favicon.ico' %}" type="image/x-icon">
+    <link rel="icon" href="/static/images/favicon.ico" type="image/x-icon">
 
-    <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
-
     <link rel="stylesheet" href="/static/css/styles.css">
 
-    <!-- JavaScript for frontend validation -->
     <script type="text/javascript">
         function validateForm() {
             var fileInput = document.getElementById('cv');
             var filePath = fileInput.value;
             var allowedExtensions = /(\.pdf|\.doc|\.docx)$/i;
 
-            // Check if the file extension is allowed
             if (!allowedExtensions.exec(filePath)) {
                 alert('Please upload a file in .pdf, .doc, or .docx format.');
-                fileInput.value = '';  // Clear the input
+                fileInput.value = '';
                 return false;
             }
 
-            // Optional: Check file size (e.g., max 5MB)
-            var fileSize = fileInput.files[0].size / 1024 / 1024; // in MB
+            var fileSize = fileInput.files[0].size / 1024 / 1024;
             if (fileSize > 5) {
                 alert('The file size must be less than 5MB.');
-                fileInput.value = '';  // Clear the input
+                fileInput.value = '';
                 return false;
             }
 
@@ -49,14 +41,13 @@
         <div class="row justify-content-center">
             <div class="col-md-6">
                 <form method="POST" enctype="multipart/form-data" onsubmit="return validateForm()">
-                    {% csrf_token %}
                     <div class="mb-3">
                         <label for="name" class="form-label">Your Name</label>
-                        {{ form.name }}
+                        <input type="text" name="name" id="name" class="form-control" required>
                     </div>
                     <div class="mb-3">
                         <label for="email" class="form-label">Your Email</label>
-                        {{ form.email }}
+                        <input type="email" name="email" id="email" class="form-control" required>
                     </div>
                     <div class="mb-3">
                         <label for="cv" class="form-label">Attach Your CV (.pdf, .docx .doc)</label>
@@ -65,13 +56,12 @@
                     <button type="submit" class="btn btn-primary w-100">Submit</button>
                 </form>
                 <p class="text-light mt-3">
-    Disclaimer: We value your privacy and ensure that the personal data you provide is used solely for recruitment purposes. We do not sell or share your data with third parties.
-            </p> 
+                    Disclaimer: We value your privacy and ensure that the personal data you provide is used solely for recruitment purposes. We do not sell or share your data with third parties.
+                </p> 
             </div>
         </div>   
     </div>
 
-    <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
