@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Work with Us - NordiQvant</title>
+
+    <link rel="icon" href="/static/images/favicon.ico" type="image/x-icon">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/styles.css">
+
+    <script type="text/javascript">
+        function validateForm() {
+            var fileInput = document.getElementById('cv');
+            var filePath = fileInput.value;
+            var allowedExtensions = /(\.pdf|\.doc|\.docx)$/i;
+
+            if (!allowedExtensions.exec(filePath)) {
+                alert('Please upload a file in .pdf, .doc, or .docx format.');
+                fileInput.value = '';
+                return false;
+            }
+
+            var fileSize = fileInput.files[0].size / 1024 / 1024;
+            if (fileSize > 5) {
+                alert('The file size must be less than 5MB.');
+                fileInput.value = '';
+                return false;
+            }
+
+            return true;
+        }
+    </script>
+</head>
+<body class="bg-dark text-light">
+    <div class="container py-5">
+        <h1 class="text-center mb-4">Work with Us</h1>
+        <p class="text-center">We're looking for talented developers! Please fill out the form below and upload your CV.</p>
+
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <form method="POST" enctype="multipart/form-data" onsubmit="return validateForm()">
+                    <div class="mb-3">
+                        <label for="name" class="form-label">Your Name</label>
+                        <input type="text" name="name" id="name" class="form-control" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="email" class="form-label">Your Email</label>
+                        <input type="email" name="email" id="email" class="form-control" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="cv" class="form-label">Attach Your CV (.pdf, .docx .doc)</label>
+                        <input type="file" name="cv" id="cv" class="form-control" accept=".pdf,.doc,.docx" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary w-100">Submit</button>
+                </form>
+                <p class="text-light mt-3">
+                    Disclaimer: We value your privacy and ensure that the personal data you provide is used solely for recruitment purposes. We do not sell or share your data with third parties.
+                </p> 
+            </div>
+        </div>   
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
